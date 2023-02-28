@@ -2,7 +2,10 @@ package com.entertainment;
 
 import java.util.Objects;
 
-public class Television {
+/*
+ * Natural order is defined by 'brand' (String).
+ */
+public class Television implements Comparable<Television> {
     // fields or instance variables
     private String brand;
     private int volume;
@@ -45,7 +48,8 @@ public class Television {
         this.volume = volume;
     }
 
-/*    @Override
+    /*
+    @Override
     public boolean equals(Object obj) {
         // if I am the same physical object as obj
         if (this == obj) return true;
@@ -53,6 +57,7 @@ public class Television {
         // if obj is null  OR  I and obj are not the same EXACT type
         if (obj == null || this.getClass() != obj.getClass()) return false;
 
+        // downcast and do the checks
         Television that = (Television) obj;
         return this.getVolume() == that.getVolume() &&
                Objects.equals(this.getBrand(), that.getBrand());
@@ -61,7 +66,8 @@ public class Television {
     @Override
     public int hashCode() {
         return Objects.hash(getBrand(), getVolume());
-    }*/
+    }
+    */
 
     @Override
     public int hashCode() {
@@ -79,16 +85,26 @@ public class Television {
     public boolean equals(Object obj) {
         boolean result = false;
 
-        // proceed only if 'obj' is really a reference to a Television object
-        if (this.getClass() == obj.getClass()) {  // okay to use == for Class objects
-            // safely downcast to more specific type Television, so we can call Television methods
+        // 'this' (me) and 'obj' refer to the same physical object in memory!
+        if (this == obj) {
+            result = true;
+        }
+        // 'obj' is not-null and my Class object is the same as its Class object
+        else if (obj != null && (this.getClass() == obj.getClass())) {
             Television other = (Television) obj;
-
-            // do the checks: brands are the same AND volumes are the same
-            result = Objects.equals(this.getBrand(), other.getBrand()) &&  // null-safe check
-                     this.getVolume() == other.getVolume();                // int can't be null
+            result = Objects.equals(this.getBrand(), other.getBrand()) &&   // null-safe
+                     this.getVolume() == other.getVolume();  // primitives can't be null
         }
         return result;
+    }
+
+    /*
+     * Natural order is defined by 'brand' (String).
+     * Since brand (String) is already Comparable, just delegate to its compareTo() method.
+     */
+    @Override
+    public int compareTo(Television other) {
+        return this.getBrand().compareTo(other.getBrand());
     }
 
     @Override
