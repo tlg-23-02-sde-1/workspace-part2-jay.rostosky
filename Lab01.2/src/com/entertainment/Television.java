@@ -45,6 +45,24 @@ public class Television {
         this.volume = volume;
     }
 
+/*    @Override
+    public boolean equals(Object obj) {
+        // if I am the same physical object as obj
+        if (this == obj) return true;
+
+        // if obj is null  OR  I and obj are not the same EXACT type
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        Television that = (Television) obj;
+        return this.getVolume() == that.getVolume() &&
+               Objects.equals(this.getBrand(), that.getBrand());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBrand(), getVolume());
+    }*/
+
     @Override
     public int hashCode() {
         // this is a poorly written hash function, because it easily results in "hash collisions"
@@ -62,7 +80,7 @@ public class Television {
         boolean result = false;
 
         // proceed only if 'obj' is really a reference to a Television object
-        if (obj instanceof Television) {
+        if (this.getClass() == obj.getClass()) {  // okay to use == for Class objects
             // safely downcast to more specific type Television, so we can call Television methods
             Television other = (Television) obj;
 
