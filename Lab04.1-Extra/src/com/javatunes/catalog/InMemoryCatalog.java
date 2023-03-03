@@ -17,7 +17,7 @@ import java.util.List;
 // Your first job is to fulfill the contract that this class has signed.
 public class InMemoryCatalog implements Catalog {
 
-    private List<MusicItem> catalogData = new ArrayList<>(List.of(
+    private final List<MusicItem> catalogData = new ArrayList<>(List.of(
                    /* id    title                        artist                       releaseDate  price  musicCategory */
         new MusicItem(1L,  "Diva",                      "Annie Lennox",              "1992-01-04", 13.99, MusicCategory.POP),
         new MusicItem(2L,  "Dream of the Blue Turtles", "Sting",                     "1985-02-05", 14.99, MusicCategory.POP),
