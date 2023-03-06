@@ -74,9 +74,16 @@ class Board {
      * This includes column headings, spacing it all out nicely, etc.
      */
     public void show() {
+        System.out.println("Duck Race Results");
+        System.out.println("=================\n");
+        System.out.println("id    name      wins    rewards");
+        System.out.println("--    ----      ----    -------");
+
         Collection<DuckRacer> allRacers = racerMap.values();  // return Collection<V>
         for (DuckRacer racer : allRacers) {
-            System.out.println(racer);  // toString() automatically called
+            // System.out.println(racer);  // toString() automatically called
+            System.out.printf("%s    %s        %s       %s\n",
+                    racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
         }
     }
 
