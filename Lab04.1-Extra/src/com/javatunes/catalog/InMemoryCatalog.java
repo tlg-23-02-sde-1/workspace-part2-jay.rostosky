@@ -192,9 +192,10 @@ public class InMemoryCatalog implements Catalog {
 
 
     /**
-     * TASK: return a map whose keys are all the genres (categories), and each key's associated value
-     * is a collection of items in that genre.  If there is a genre that we don't currently
-     * sell, that key's associated value should be an empty collection, not null.
+     * TASK: return a map whose keys are all the genres (categories), and each key's
+     * associated value is a collection of items in that genre.
+     * If there is a genre that we don't currently sell, that key's associated value
+     * should be an empty collection, not null.
      */
 
 
