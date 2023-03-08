@@ -35,13 +35,13 @@ class DuckRacer {
         this.name = name;
     }
 
-    // a derived property, we can "calculate" the number of wins from the 'rewards' collection
+    // a derived property, we "calculate" the number of wins from the 'rewards' collection
     public int getWins() {
         return rewards.size();
     }
 
     // NOTE: we are returning a read-only view of our List<Reward>
-    // The client can't mess with it (add/remove/clear), but it is a "live" view of the List
+    // The client can't change it (add/remove/clear), but it is a "live" view of the List
     public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }
