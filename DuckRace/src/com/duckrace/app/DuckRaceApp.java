@@ -12,6 +12,7 @@ import static com.duckrace.Reward.*;
 public class DuckRaceApp {
     private final Board board = new Board();
     private final Scanner scanner = new Scanner(System.in);
+    private final int maxId = board.maxId();
 
     public void execute() {
         welcome();
@@ -42,11 +43,11 @@ public class DuckRaceApp {
 
         boolean validInput = false;
         while (!validInput) {
-            System.out.print("Please enter id of the winner [1-14]: ");  // TODO, no hardcode 14
+            System.out.print("Please enter id of the winner [1-" + maxId + "]: ");
             String input = scanner.nextLine().trim();  // BLOCKS for input
             if (input.matches("\\d{1,2}")) {           // any digit, one or two times
                 id = Integer.parseInt(input);          // now you can safely parseInt()
-                if (1 <= id && id <= 14) {
+                if (1 <= id && id <= maxId) {
                     validInput = true;
                 }
             }
@@ -59,12 +60,15 @@ public class DuckRaceApp {
     }
 
     private void showBoard() {
+        System.out.println();
         board.show();
     }
 
     private void welcome() {
         System.out.println();
+        System.out.println("- - - - - - -   - -   - - -   - - - -   - - - -   - - - - - - - - - - -");
         System.out.println("W E L C O M E   T O   T H E   D U C K   R A C E   A P P L I C A T I O N");
+        System.out.println("- - - - - - -   - -   - - -   - - - -   - - - -   - - - - - - - - - - -");
         System.out.println();
     }
 }

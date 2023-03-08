@@ -75,9 +75,27 @@ public class Board {
      */
     public void show() {
         if (racerMap.isEmpty()) {
-            System.out.println("There are currently no winners in the board\n");
+            System.out.println("There are currently no winners on the board\n");
         }
         else {
+            StringBuilder board = new StringBuilder();
+            board.append("Duck Race Results\n");
+            board.append("=================\n");
+            board.append("\n");
+            board.append("id    name      wins    rewards\n");
+            board.append("--    ----      ----    -------\n");
+
+            for (DuckRacer racer : racerMap.values()) {
+                String rewardsString = racer.getRewards().toString();
+                String rewards = rewardsString.substring(1, rewardsString.length() - 1);
+
+                String row = String.format("%2d    %-9s %4d    %s\n",
+                        racer.getId(), racer.getName(), racer.getWins(), rewards);
+                board.append(row);
+            }
+            System.out.println(board);
+
+            /*
             System.out.println();
             System.out.println("Duck Race Results");
             System.out.println("=================\n");
@@ -90,7 +108,12 @@ public class Board {
                 System.out.printf("%s    %s        %s       %s\n",
                         racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
             }
+            */
         }
+    }
+
+    public int maxId() {
+        return studentIdMap.size();
     }
 
     /*
