@@ -25,15 +25,11 @@ public class Department {
     }
 
     public void listEmployees() {
-        for (Employee emp : employees) {
-            System.out.println(emp);
-        }
+        employees.forEach(System.out::println);  // emp -> System.out.println(emp)
     }
 
     public void workEmployees() {
-        for (Employee emp : employees) {
-            emp.work();
-        }
+        employees.forEach(Employee::work);    // emp -> emp.work()
     }
 
     /**
@@ -41,10 +37,7 @@ public class Department {
      * it will look similar to the workEmployees() method above
      */
     public void payEmployees() {
-        // DONE
-        for (Employee emp : employees) {
-            emp.pay();
-        }
+        employees.forEach(Employee::pay);    // emp -> emp.pay()
     }
 
     // helper method to add an Employee to the collection
