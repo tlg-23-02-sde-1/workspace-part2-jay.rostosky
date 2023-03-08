@@ -21,13 +21,13 @@ public class FastEngine {
     public void analyzeClasses() {
         for (Class<?> klass : classes) {
             Fast fastAnnotation = klass.getAnnotation(Fast.class);
-            System.out.println("\n- - - - - - F A S T   J A V A   P E R F O R M A N C E   R E P O R T - - - - - -");
+            System.out.println("\n- - - - - - F A S T   J A V A   P E R F O R M A N C E   R E P O R T - - - - - -\n");
 
             reportClassLevel(klass, fastAnnotation);
             System.out.println();
 
             reportMethodLevel(klass);
-            System.out.println("- - - - - - - - - (c) FastJava, Inc.  All Rights Reserved - - - - - - - - - - -");
+            System.out.println("\n- - - - - - - - - (c) FastJava, Inc.  All Rights Reserved - - - - - - - - - - -");
         }
     }
 
