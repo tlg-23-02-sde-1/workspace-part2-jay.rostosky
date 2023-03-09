@@ -1,6 +1,11 @@
 package com.duckrace;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
@@ -42,7 +47,31 @@ import java.util.TreeMap;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-public class Board {
+public class Board implements Serializable {
+    // static variables and methods
+    private static final String dataFilePath = "data/board.dat";
+
+    /*
+     * If file data/board.dat exists, read that binary file into a Board object,
+     * otherwise create and return new.
+     */
+    public static Board getInstance() {
+        Board board = null;
+
+        if (Files.exists(Path.of(dataFilePath))) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFilePath))) {
+                board = (Board) in.readObject();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            board = new Board();
+        }
+        return board;
+    }
+
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();
 
@@ -65,8 +94,9 @@ public class Board {
             racer = new DuckRacer(id, studentIdMap.get(id));  // create new
             racerMap.put(id, racer);  // put in map (easy to forget this step)
         }
-        // either way, it needs to "win"
+        // either way, it needs to "win" and we need to save the Board
         racer.win(reward);
+        save();
     }
 
     /*
@@ -114,6 +144,18 @@ public class Board {
 
     public int maxId() {
         return studentIdMap.size();
+    }
+
+    /*
+     * Writes the state of this Board object to binary file data/board.dat.
+     */
+    private void save() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
+            out.writeObject(this);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /*
