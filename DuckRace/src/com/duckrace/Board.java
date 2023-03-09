@@ -50,6 +50,7 @@ import java.util.TreeMap;
 public class Board implements Serializable {
     // static variables and methods
     private static final String dataFilePath = "data/board.dat";
+    private static final long serialVersionUID = 1;
 
     /*
      * If file data/board.dat exists, read that binary file into a Board object,
