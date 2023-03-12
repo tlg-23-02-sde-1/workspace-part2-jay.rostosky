@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 class DuckRacer implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     // fields or instance variables
     private final int id;
     private String name;
