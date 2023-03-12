@@ -32,7 +32,8 @@ public class DuckRaceApp {
             String input = scanner.nextLine().trim().toUpperCase();
             if (input.matches("D|P")) {                // now you can get the right Reward
                 validInput = true;
-                reward = ("D".equals(input)) ? DEBIT_CARD : PRIZES;
+                // reward = ("D".equals(input)) ? DEBIT_CARD : PRIZES;
+                reward = Reward.get(input);
             }
         }
         return reward;
