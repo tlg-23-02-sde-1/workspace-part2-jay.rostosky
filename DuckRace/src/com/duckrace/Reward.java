@@ -13,6 +13,8 @@ public enum Reward {
     );
 
     // Just fetch it from the Map and return it - easy!
+    // A client would call it as follows, e.g., in the controller:
+    //  Reward reward = Reward.get(userInput);  // "D" or "P"
     public static Reward get(String option) {
         return optionMap.get(option);
     }
